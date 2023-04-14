@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Temperature Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="task-bar">
+            <div id="p1"></div>
+            
+        </div>
+        <h1>Temperature Converter</h1>
+        <div class="inputs">
+            <div style="display: flex;
+            flex-direction: column;">
+                <label for="degree">Value <span id="small">(In Numbers...)</span></label>
+                <input type="number" name="degree" id="inputValue" required>
+            </div>
+            <div class="inptsss">
+                <div>
+                    <label for="type">From</label>
+                    <select name="type" id="type1">
+                        <option value="celcius">Celcius</option>
+                        <option value="fahrenheit">Fahrenheit</option>
+                        <option value="kelvin">Kelvin</option>
+                        <option value="rankine">Rankine</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="type">To</label>
+                    <select name="type" id="type2">
+                        <option value="celcius">Celcius</option>
+                        <option value="fahrenheit">Fahrenheit</option>
+                        <option value="kelvin">Kelvin</option>
+                        <option value="rankine">Rankine</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button type="submit" id="btn" onclick="temperature()">Convert</button>
+        <div class="resultss">
+            <label for="result">Result</label>
+            <div id="result"></div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Designed by <a href="https://www.linkedin.com/in/yogesh-ramdasi-a30884250/">Yogesh Ramdasi</a></p>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
+
+// Logic for the digital watch
+function currentTime() {
+    let p1 = document.getElementById("p1")
+    let date = new Date();
+    let hr = date.getHours();
+    let mn = date.getMinutes();
+    let ss = date.getSeconds();
+    let current_time = hr + ":" + mn + ":" + ss;
+    p1.innerHTML = current_time;
+    let t = setTimeout(function () { currentTime() }, 1000);
+}
+currentTime();
+
+
+
+// Logic for temperature converter
+function temperature() {
+    let inputValue = document.querySelector("#inputValue").value;
+    let type1 = document.querySelector("#type1");
+    let type2 = document.querySelector("#type2");
+    let result = document.querySelector("#result");
+    if (inputValue == "") {
+        alert("Please Enter any Number....")
+        location.reload()
+    }
+    else if (type1.value == "celcius" && type2.value == "celcius") {
+        let Celcius = Number.parseInt(inputValue) * 1
+        result.innerHTML = Celcius.toFixed(3) + ` &deg;C`
+    }
+    else if (type1.value == "celcius" && type2.value == "fahrenheit") {
+        let Fahrenheit = Number.parseInt(inputValue) * (9 / 5) + 32
+        result.innerHTML = Fahrenheit.toFixed(3) + " F"
+    }
+    else if (type1.value == "celcius" && type2.value == "kelvin") {
+        let Kelvin = Number.parseInt(inputValue) + 273.15
+        result.innerHTML = Kelvin.toFixed(3) + " K"
+    }
+    else if (type1.value == "celcius" && type2.value == "rankine") {
+        let Rankine = Number.parseInt(inputValue) * (9 / 5) + 491.67
+        result.innerHTML = Rankine.toFixed(3) + " R"
+    }
+    else if (type1.value == "fahrenheit" && type2.value == "celcius") {
+        let Celcius = Number.parseInt(inputValue) - 32 * (5 / 9)
+        result.innerHTML = Celcius.toFixed(3) + ` &deg;C`
+    }
+    else if (type1.value == "fahrenheit" && type2.value == "fahrenheit") {
+        let Fahrenheit = Number.parseInt(inputValue) * 1
+        result.innerHTML = Fahrenheit.toFixed(3) + " F"
+    }
+    else if (type1.value == "fahrenheit" && type2.value == "kelvin") {
+        let Kelvin = Number.parseInt(inputValue) - 32 * (5 / 9) + 273.15
+        result.innerHTML = Kelvin.toFixed(3) + " K"
+    }
+    else if (type1.value == "fahrenheit" && type2.value == "rankine") {
+        let Rankine = Number.parseInt(inputValue) + 459.67
+        result.innerHTML = Rankine.toFixed(3) + " R"
+    }
+    else if (type1.value == "kelvin" && type2.value == "celcius") {
+        let Celcius = Number.parseInt(inputValue) - 273.15
+        result.innerHTML = Celcius.toFixed(3) + ` &deg;C`
+    }
+    else if (type1.value == "kelvin" && type2.value == "fahrenheit") {
+        let Fahrenheit = Number.parseInt(inputValue) - 273.15 * (9 / 5) + 32
+        result.innerHTML = Fahrenheit.toFixed(3) + " F"
+    }
+    else if (type1.value == "kelvin" && type2.value == "kelvin") {
+        let Kelvin = Number.parseInt(inputValue) * 1
+        result.innerHTML = Kelvin.toFixed(3) + " K"
+    }
+    else if (type1.value == "kelvin" && type2.value == "rankine") {
+        let Rankine = Number.parseInt(inputValue) * 1.8
+        result.innerHTML = Rankine.toFixed(3) + " R"
+    }
+    else if (type1.value == "rankine" && type2.value == "celcius") {
+        let Celcius = Number.parseInt(inputValue) - 491.67 * (5 / 9)
+        result.innerHTML = Celcius.toFixed(3) + ` &deg;C`
+    }
+    else if (type1.value == "rankine" && type2.value == "fahrenheit") {
+        let Fahrenheit = Number.parseInt(inputValue) - 495.67
+        result.innerHTML = Fahrenheit.toFixed(3) + " F"
+    }
+    else if (type1.value == "rankine" && type2.value == "kelvin") {
+        let Kelvin = Number.parseInt(inputValue) * (5 / 9)
+        result.innerHTML = Kelvin.toFixed(3) + " K"
+    }
+    else if (type1.value == "rankine" && type2.value == "rankine") {
+        let Rankine = Number.parseInt(inputValue) * 1
+        result.innerHTML = Rankine.toFixed(3) + " R"
+    }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: rgb(12, 9, 9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    background-color: white;
+    width: 510px;
+    /* height: 373px; */
+    padding: 5px 25px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    box-shadow: 20px 20px 20px rgb(209, 36, 36);
+}
+
+.container h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 33px;
+    font-weight: 700;
+    text-align: center;
+    user-select: none;
+    letter-spacing: 1px;
+}
+
+.task-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    padding: 2px 0 0 0;
+}
+
+#p1 {
+    font-family: system-ui;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputs:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inptsss {
+    display: flex;
+    gap: 10px;
+}
+
+.inptsss div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+#small {
+    font-size: 13px;
+}
+
+#result,
+#inputValue {
+    height: 40px;
+    font-size: 25px;
+    border: 1px solid gray;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+    padding: 0 10px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#result:focus,
+#inputValue:focus {
+    height: 40px;
+    font-size: 25px;
+    border: 1px solid rgb(130, 130, 255);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+    padding: 0 10px;
+}
+
+#btn {
+    height: 45px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: rgb(240, 90, 31);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#btn:active {
+    height: 45px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: rgb(108, 108, 255);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.resultss {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#type1,
+#type2 {
+    height: 41px;
+    font-size: 25px;
+    border: 1px solid rgb(197, 19, 19);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+    padding: 0 10px;
+}
+
+#type1:focus,
+#type2:focus {
+    height: 41px;
+    font-size: 25px;
+    border: 1px solid rgb(14, 14, 196);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+    padding: 0 10px;
+}
+
+label {
+    font-size: 17px;
+    font-family: -webkit-pictograph;
+    color: rgb(73, 21, 21);
+}
+
+.footer {
+    height: 5vh;
+    width: 100vw;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer p {
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.footer p a {
+    text-decoration: none;
+    color: rgb(21, 21, 146);
+}
+
+.footer p a:hover {
+    color: rgb(255, 0, 64);
+}
+
+
+@media only screen and (max-width: 575px) {
+    .container {
+        transform: scale(0.95);
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .container {
+        transform: scale(0.9);
+    }
+}
+
+@media only screen and (max-width: 340px) {
+    .container {
+        transform: scale(0.8);
+    }
+}
